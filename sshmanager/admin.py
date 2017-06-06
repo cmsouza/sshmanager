@@ -1,5 +1,7 @@
+import uuid
+
 from django.contrib import admin
-from .models import Host
+from .models import Host, Token
 
 # Register your models here.
 
@@ -12,4 +14,15 @@ class HostAdmin(admin.ModelAdmin):
 		obj.owner = request.user
 		obj.save()
 
+class TokenAdmin(admin.ModelAdmin):
+	readonly_fields = ('owner','token','created_at',)
+
+	def save_model(self, request, obj, form, change):
+		obj.owner = request.user
+		if not obj.token:
+			obj.token = uuid.uuid4()
+
+		obj.save()
+
 admin.site.register(Host, HostAdmin)
+admin.site.register(Token, TokenAdmin)

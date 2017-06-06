@@ -13,3 +13,10 @@ class Host(models.Model):
 
     def __str__(self):
         return "%s@%s:%d" % (self.user, self.hostname, self.port)
+
+class Token(models.Model):
+    id = models.AutoField(primary_key = True)
+    owner = models.ForeignKey('auth.User')
+    token = models.CharField(max_length=32)
+    active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(default = timezone.now)

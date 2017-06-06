@@ -1,0 +1,7 @@
+{% for host in hosts %}# Created at {{ host.created_at }} by {{ host.owner.username }}
+Host {{ host.host }}
+	Hostname {{ host.hostname }}
+	User {{ host.user }}
+	Port {{ host.port }}
+
+{% endfor %}
