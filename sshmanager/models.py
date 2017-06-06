@@ -20,3 +20,6 @@ class Token(models.Model):
     token = models.CharField(max_length=32)
     active = models.BooleanField(default=True)
     created_at = models.DateTimeField(default = timezone.now)
+
+    def __str__(self):
+        return "%s - %s" % (self.owner.username, self.token)
