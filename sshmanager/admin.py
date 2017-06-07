@@ -15,7 +15,9 @@ class HostAdmin(admin.ModelAdmin):
 
 
 	def save_model(self, request, obj, form, change):
-		obj.owner = request.user
+		if not obj.has_owner():
+			obj.owner = request.user
+
 		obj.save()
 
 class TokenAdmin(admin.ModelAdmin):
@@ -23,7 +25,9 @@ class TokenAdmin(admin.ModelAdmin):
 	list_display = ('owner', 'token', 'active', 'created_at')
 
 	def save_model(self, request, obj, form, change):
-		obj.owner = request.user
+		if not obj.has_owner():
+			obj.owner = request.user
+
 		if not obj.token:
 			obj.token = uuid.uuid4()
 

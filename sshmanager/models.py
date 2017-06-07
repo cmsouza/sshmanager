@@ -11,6 +11,9 @@ class Host(models.Model):
     active = models.BooleanField(default = True)
     created_at = models.DateTimeField(default = timezone.now)
 
+    def has_owner(self):
+        return self.owner_id is not None
+
     def __str__(self):
         return "%s@%s:%d" % (self.user, self.hostname, self.port)
 
@@ -20,6 +23,9 @@ class Token(models.Model):
     token = models.CharField(max_length=32)
     active = models.BooleanField(default=True)
     created_at = models.DateTimeField(default = timezone.now)
+
+    def has_owner(self):
+        return self.owner_id is not None
 
     def __str__(self):
         return "%s - %s" % (self.owner.username, self.token)
