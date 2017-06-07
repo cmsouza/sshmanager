@@ -7,7 +7,7 @@ class Host(models.Model):
     host = models.CharField(max_length = 100)
     hostname = models.CharField(max_length = 100)
     user = models.CharField(max_length = 100)
-    port = models.IntegerField()
+    port = models.IntegerField(default=22)
     active = models.BooleanField(default = True)
     created_at = models.DateTimeField(default = timezone.now)
 
@@ -21,6 +21,7 @@ class Token(models.Model):
     id = models.AutoField(primary_key = True)
     owner = models.ForeignKey('auth.User')
     token = models.CharField(max_length=32)
+    obs = models.CharField(max_length=100,null=True)
     active = models.BooleanField(default=True)
     created_at = models.DateTimeField(default = timezone.now)
 
@@ -28,4 +29,4 @@ class Token(models.Model):
         return self.owner_id is not None
 
     def __str__(self):
-        return "%s - %s" % (self.owner.username, self.token)
+        return str(self.token)
