@@ -21,7 +21,7 @@ class HostAdmin(admin.ModelAdmin):
 		obj.save()
 
 	def get_queryset(self, request):
-		qs = super(HostAdmin, self).get_queryset(request)
+		qs = super().get_queryset(request)
 		if request.user.is_superuser:
 			return qs
 
@@ -41,7 +41,7 @@ class TokenAdmin(admin.ModelAdmin):
 		obj.save()
 
 	def get_queryset(self, request):
-		qs = super(TokenAdmin, self).get_queryset(request)
+		qs = super().get_queryset(request)
 		if request.user.is_superuser:
 			return qs
 
