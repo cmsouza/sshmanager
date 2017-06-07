@@ -4,6 +4,8 @@ from django.contrib import admin
 from .models import Host, Token
 
 # Register your models here.
+admin.site.site_title = 'SSHManager - Admin'
+admin.site.site_header = 'SSHManager - Admin'
 
 class HostAdmin(admin.ModelAdmin):
 	readonly_fields = ('owner','created_at',)
