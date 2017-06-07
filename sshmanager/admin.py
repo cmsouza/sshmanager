@@ -11,6 +11,8 @@ class HostAdmin(admin.ModelAdmin):
 	readonly_fields = ('owner','created_at',)
 	list_filter = ('owner',)
 	search_fields = ['host', 'owner__username']
+	list_display = ('owner', 'host', 'hostname', 'port','active', 'created_at',)
+
 
 	def save_model(self, request, obj, form, change):
 		obj.owner = request.user
@@ -18,6 +20,7 @@ class HostAdmin(admin.ModelAdmin):
 
 class TokenAdmin(admin.ModelAdmin):
 	readonly_fields = ('owner','token','created_at',)
+	list_display = ('owner', 'token', 'active', 'created_at')
 
 	def save_model(self, request, obj, form, change):
 		obj.owner = request.user
