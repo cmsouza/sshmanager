@@ -1,5 +1,5 @@
-{% for host in hosts %}# Created at {{ host.created_at }} by {{ host.owner.username }}
-Host {{ host.host }}
+{% for host in hosts %}# Created at {{ host.created_at }}
+Host {{ host.full_host }}
 	Hostname {{ host.hostname }}
 	User {{ host.user }}
 	Port {{ host.port }}
