@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
 
+
 class Host(models.Model):
     id = models.AutoField(primary_key=True)
     owner = models.ForeignKey('auth.User')
@@ -22,6 +23,7 @@ class Host(models.Model):
     def __str__(self):
         return "%s@%s:%d" % (self.user, self.hostname, self.port)
 
+
 class Token(models.Model):
     id = models.AutoField(primary_key=True)
     owner = models.ForeignKey('auth.User')
@@ -35,6 +37,7 @@ class Token(models.Model):
 
     def __str__(self):
         return str(self.token)
+
 
 class Category(models.Model):
     class Meta:
