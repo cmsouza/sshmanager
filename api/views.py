@@ -1,5 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist
-from django.http.response import HttpResponseServerError, Http404
+from django.http.response import HttpResponseServerError, HttpResponseBadRequest
 from django.shortcuts import render
 from sshmanager.models import Token, Host
 
@@ -11,7 +11,7 @@ def config_file(request):
     try:
         token = Token.objects.get(token=request.META['HTTP_X_API_TOKEN'])
     except ObjectDoesNotExist:
-        raise Http404('Invalid Token')
+        return HttpResponseBadRequest('Invalid Token')
 
     hosts = Host.objects.filter(owner=token.owner, active=True)
 
